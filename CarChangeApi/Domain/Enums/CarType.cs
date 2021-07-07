@@ -1,4 +1,4 @@
-﻿namespace CarChangeApi.Domain.Models
+﻿namespace CarChangeApi.Domain.Enums
 {
     public enum CarType
     {

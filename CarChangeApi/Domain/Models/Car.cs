@@ -1,9 +1,11 @@
-﻿using System;
+﻿using CarChangeApi.Domain.Enums;
+using System;
 
 namespace CarChangeApi.Domain.Models
 {
     public class Car
     {
+        // TODO: Add relations to Advertisement 
         public CarType Type { get; set; }
         public string Mark { get; set; }
         public string Model { get; set; }
@@ -14,5 +16,6 @@ namespace CarChangeApi.Domain.Models
         public int MileageKm { get; set; }
         public int MileageMl { get; set; }
         public int Doors { get; set; }
+        public GearBoxType GearboxType { get; set; }
     }
 }
