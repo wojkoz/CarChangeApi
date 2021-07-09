@@ -2,7 +2,7 @@
 
 namespace CarChangeApi.Contracts.Responses
 {
-    public class UserLoginResponse : GeneralResponse
+    public class UserLoginResponse : BaseResponse
     {
         public string Token { get; set; }
         public DateTime TokenValidTo { get; set; }

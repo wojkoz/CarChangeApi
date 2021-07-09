@@ -1,8 +1,8 @@
 ﻿using CarChangeApi.Domain.Generated;
 
-namespace CarChangeApi.Contracts.Requests
+namespace CarChangeApi.Contracts.Responses
 {
-    public class AdvertisementCreateRequest
+    public class AdvertisementCreateResponse : BaseResponse
     {
         public AdvertisementDto Advertisement { get; set; }
     }
