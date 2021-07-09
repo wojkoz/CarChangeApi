@@ -17,7 +17,7 @@ namespace CarChangeApi.Commands
         public class Handler : RequestHandler<Command, Task<AdvertisementCreateResponse>>
         {
             private readonly ILogger<AdvertisementCreateCommand> _logger;
-            //private readonly IAuthService _authService;
+           // private readonly IAdvertisementRepository ;
             public Handler(ILogger<AdvertisementCreateCommand> logger)
             {
                 _logger = logger;
