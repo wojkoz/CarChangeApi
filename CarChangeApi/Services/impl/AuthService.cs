@@ -12,7 +12,6 @@ using System.Linq;
 using CarChangeApi.Domain.Models;
 using CarChangeApi.Contracts.Responses;
 using CarChangeApi.Contracts.Requests;
-using CarChangeApi.Services;
 
 namespace CarChangeApi.Services.impl
 {

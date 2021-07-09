@@ -25,11 +25,7 @@ namespace CarChangeApi
                    .Select(System.Activator.CreateInstance).Cast<IInstaller>().ToList();
 
             installers.ForEach(x => x.InstallServices(services, Configuration));
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                
-            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,5 +51,7 @@ namespace CarChangeApi
                 endpoints.MapControllers();
             });
         }
+
+
     }
 }
