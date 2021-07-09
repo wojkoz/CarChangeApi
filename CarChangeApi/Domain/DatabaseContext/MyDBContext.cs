@@ -17,6 +17,16 @@ namespace CarChangeApi.Domain.DatabaseContext
             base.OnModelCreating(modelBuilder);
 
             new UserEntityConfiguration().Configure(modelBuilder.Entity<User>());
+            new AdvertisementEntityConfiguration().Configure(modelBuilder.Entity<Advertisement>());
+            new CarEntityConfiguration().Configure(modelBuilder.Entity<Car>());
+
+            modelBuilder.Entity<Advertisement>()
+                .HasOne(a => a.User)
+                .WithMany(u => u.Advertisements)
+                .HasForeignKey(a => a.UserId);
         }
+
+        public virtual DbSet<Advertisement> Advertisements { get; set; }
+        public virtual DbSet<Car> Cars { get; set; }
     }
 }
