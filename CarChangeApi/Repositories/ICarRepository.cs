@@ -2,7 +2,7 @@
 
 namespace CarChangeApi.Repositories
 {
-    public interface IAdvertisementRepository : IGenericRepository<Advertisement>
+    public interface ICarRepository : IGenericRepository<Car>
     {
     }
 }
