@@ -4,7 +4,6 @@ namespace CarChangeApi.Domain.Models
 {
     public class Advertisement
     {
-        // TODO: Add relations to Car and User 
         public int AdvertisementId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
