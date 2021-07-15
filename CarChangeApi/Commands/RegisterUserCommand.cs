@@ -5,44 +5,48 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CarChangeApi.Commands
 {
-    public class RegisterUserCommand
+    public class RegisterUserCommand : IRequest<UserRegisterResponse>
     {
-        public class Command : IRequest<Task<UserRegisterResponse>>
+        public AuthRegisterRequest RegisterRequest { get; set; }
+
+        public RegisterUserCommand(AuthRegisterRequest registerRequest)
         {
-            public AuthRegisterRequest RegisterRequest { get; set; }
+            RegisterRequest = registerRequest;
+        }
+    }
+
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, UserRegisterResponse>
+    {
+        private readonly ILogger<RegisterUserCommand> _logger;
+        private readonly IAuthService _authService;
+        public RegisterUserCommandHandler(ILogger<RegisterUserCommand> logger, IAuthService authService)
+        {
+            _logger = logger;
+            _authService = authService;
         }
 
-        public class Handler : RequestHandler<Command, Task<UserRegisterResponse>>
+        public async Task<UserRegisterResponse> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            private readonly ILogger<RegisterUserCommand> _logger;
-            private readonly IAuthService _authService;
-            public Handler(ILogger<RegisterUserCommand> logger, IAuthService authService)
-            {
-                _logger = logger;
-                _authService = authService;
-            }
-            protected override async Task<UserRegisterResponse> Handle(Command request)
-            {
-                _logger.LogInformation("RegisterUserCommand handler");
+            _logger.LogInformation("RegisterUserCommand handler");
 
-                var result = await _authService.RegisterAsync(request.RegisterRequest);
+            var result = await _authService.RegisterAsync(request.RegisterRequest);
 
-                if (result is null)
-                {
-                    IEnumerable<IdentityError> errors = new List<IdentityError>() {
+            if (result is null)
+            {
+                //TODO: add helper class with errors
+                IEnumerable<IdentityError> errors = new List<IdentityError>() {
                         new(){Code = "-1", Description = "User with that email already exists"}
                     };
 
-                    return new UserRegisterResponse() { Succeded = false, Errors = errors };
-                }
-
-                return new UserRegisterResponse() { Succeded = result.Succeeded, Errors = result.Errors };
-
+                return new UserRegisterResponse() { Succeded = false, Errors = errors };
             }
+
+            return new UserRegisterResponse() { Succeded = result.Succeeded, Errors = result.Errors };
         }
     }
 }

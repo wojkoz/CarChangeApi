@@ -2,7 +2,6 @@
 using CarChangeApi.Contracts.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace CarChangeApi.Controllers
@@ -21,11 +20,7 @@ namespace CarChangeApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] AuthRegisterRequest authRegisterRequest)
         {
-            var result = await await _mediator.Send(new RegisterUserCommand.Command
-            {
-                RegisterRequest = authRegisterRequest
-            }
-             );
+            var result = await _mediator.Send(new RegisterUserCommand(authRegisterRequest));
 
             return result.Succeded ? Ok(result) : Conflict(result);
         }
@@ -33,22 +28,10 @@ namespace CarChangeApi.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] AuthLoginRequest authLoginRequest)
         {
-            var result = await await _mediator.Send(new LoginUserCommand.Command
-            {
-                LoginRequest = authLoginRequest
-            }
-             );
+            var result = await _mediator.Send(new LoginUserCommand(authLoginRequest));
 
             return result.Succeded ? Ok(result) : Unauthorized(result);
         }
-        [HttpGet("video")]
-        public IActionResult SampleVideoStream()
-        {
-            var pathToVideos = "video/";
-            //var pathToVideos = "F:\\CSharp Net\\StreamAppWebApi\\StreamApp\\StreamAppWebApi\\video\\";
-            var path = Path.Combine(pathToVideos, "film2.mp4");
-            return File(System.IO.File.OpenRead(path), "video/mp4");
-            //return PhysicalFile(path, "application/octet-stream", enableRangeProcessing: true);
-        }
+        
     }
 }
