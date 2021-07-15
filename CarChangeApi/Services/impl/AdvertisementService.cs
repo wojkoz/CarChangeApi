@@ -21,12 +21,12 @@ namespace CarChangeApi.Services.impl
             _logger = logger;
         }
 
-        public Task<AdvertisementDto> AddAdvertisementAsync(AdvertisementCreateRequest createRequest, string token)
+        public Task<AdvertisementDto> AddAdvertisementAsync(AdvertisementCreateRequest createRequest, string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAdvertisementAsync(long todoId, string token)
+        public Task DeleteAdvertisementAsync(long todoId, string userId)
         {
             throw new NotImplementedException();
         }
@@ -36,12 +36,12 @@ namespace CarChangeApi.Services.impl
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<AdvertisementDto>> GetAdvertisementListByUserAsync(string token)
+        public Task<IEnumerable<AdvertisementDto>> GetAdvertisementListByUserAsync(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<AdvertisementDto> UpdateAdvertisementAsync(AdvertisementDto dto, string token)
+        public Task<AdvertisementDto> UpdateAdvertisementAsync(AdvertisementDto dto, string userId)
         {
             throw new NotImplementedException();
         }

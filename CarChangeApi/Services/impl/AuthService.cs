@@ -97,7 +97,7 @@ namespace CarChangeApi.Services.impl
             var authClaims = new List<Claim>
             {
                 new (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new (ClaimValueTypes.String, user.Id)
+                new(ClaimTypes.NameIdentifier, user.Id)
             };
             authClaims.AddRange(
                 userRoles.Select(userRole => new Claim(ClaimTypes.Role, userRole))

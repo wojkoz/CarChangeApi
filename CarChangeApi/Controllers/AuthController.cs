@@ -32,22 +32,6 @@ namespace CarChangeApi.Controllers
 
             return result.Succeded ? Ok(result) : Unauthorized(result);
         }
-        
-        public IActionResult SampleVideoStream()
-        {
-            var pathToVideos = "video/";
-            //var pathToVideos = "F:\\CSharp Net\\StreamAppWebApi\\StreamApp\\StreamAppWebApi\\video\\";
-            var path = Path.Combine(pathToVideos, "film2.mp4");
-            return File(System.IO.File.OpenRead(path), "video/mp4");
-            //return PhysicalFile(path, "application/octet-stream", enableRangeProcessing: true);
-        }
-        public IActionResult SampleVideoStream()
-        {
-            var pathToVideos = "video/";
-            //var pathToVideos = "F:\\CSharp Net\\StreamAppWebApi\\StreamApp\\StreamAppWebApi\\video\\";
-            var path = Path.Combine(pathToVideos, "film2.mp4");
-            return File(System.IO.File.OpenRead(path), "video/mp4");
-            //return PhysicalFile(path, "application/octet-stream", enableRangeProcessing: true);
-        }
+
     }
 }

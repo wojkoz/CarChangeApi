@@ -4,47 +4,51 @@ using CarChangeApi.Contracts.Responses;
 using CarChangeApi.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CarChangeApi.Commands
 {
-    public class AdvertisementCreateCommand
+    public class AdvertisementCreateCommand : BaseRequest, IRequest<AdvertisementCreateResponse>
     {
-        public class Command : IRequest<Task<AdvertisementCreateResponse>>
+        public AdvertisementCreateRequest CreateRequest { get; private set; }
+
+        public AdvertisementCreateCommand(AdvertisementCreateRequest createRequest)
         {
-            public AdvertisementCreateRequest CreateRequest { get; set; }
+            CreateRequest = createRequest;
+        }
+    }
+
+    public class AdvertisementCreateCommandHandler : IRequestHandler<AdvertisementCreateCommand, AdvertisementCreateResponse>
+    {
+        private readonly ILogger<AdvertisementCreateCommand> _logger;
+        private readonly IAdvertisementService _advertisementService;
+        public AdvertisementCreateCommandHandler(ILogger<AdvertisementCreateCommand> logger, IAdvertisementService advertisementService)
+        {
+            _logger = logger;
+            _advertisementService = advertisementService;
         }
 
-        public class Handler : RequestHandler<Command, Task<AdvertisementCreateResponse>>
+        public async Task<AdvertisementCreateResponse> Handle(AdvertisementCreateCommand request, CancellationToken cancellationToken)
         {
-            private readonly ILogger<AdvertisementCreateCommand> _logger;
-            private readonly IAdvertisementService _advertisementService ;
-            public Handler(ILogger<AdvertisementCreateCommand> logger, IAdvertisementService advertisementService)
-            {
-                _logger = logger;
-                _advertisementService = advertisementService;
-            }
-            protected override async Task<AdvertisementCreateResponse> Handle(Command request)
-            {
-                _logger.LogInformation("RegisterUserCommand handler");
+            _logger.LogInformation("RegisterUserCommand handler");
 
-                var result = await _advertisementService.ad
+            var result = await _advertisementService.AddAdvertisementAsync(request.CreateRequest, request.UserId);
 
-               /* var result = await _authService.RegisterAsync(request.RegisterRequest);
+            return new AdvertisementCreateResponse() { Advertisement = result, Succeded = true};
 
-                if (result is null)
-                {
-                    IEnumerable<IdentityError> errors = new List<IdentityError>() {
-                        new(){Code = "-1", Description = "User with that email already exists"}
-                    };
+            //if (result is null)
+            //{
+            //    IEnumerable<IdentityError> errors = new List<IdentityError>() {
+            //            new(){Code = "-1", Description = "User with that email already exists"}
+            //        };
 
-                    return new UserRegisterResponse() { Succeded = false, Errors = errors };
-                }
+            //    return new UserRegisterResponse() { Succeded = false, Errors = errors };
+            //}
 
-                return new UserRegisterResponse() { Succeded = result.Succeeded, Errors = result.Errors };
-               */
+            //return new UserRegisterResponse() { Succeded = result.Succeeded, Errors = result.Errors };
 
-            }
         }
+
     }
 }
