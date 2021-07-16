@@ -1,4 +1,4 @@
-﻿using CarChangeApi.Domain.Generated;
+﻿using CarChangeApi.Domain.Dtos;
 
 namespace CarChangeApi.Contracts.Responses
 {

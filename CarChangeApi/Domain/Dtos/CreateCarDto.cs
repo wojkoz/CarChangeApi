@@ -1,10 +1,9 @@
 ﻿using CarChangeApi.Domain.Enums;
 
-namespace CarChangeApi.Domain.Models
+namespace CarChangeApi.Domain.Dtos
 {
-    public class Car
+    public class CreateCarDto
     {
-        public int CarId { get; set; }
         public CarType Type { get; set; }
         public string Mark { get; set; }
         public string Model { get; set; }
@@ -16,8 +15,5 @@ namespace CarChangeApi.Domain.Models
         public int MileageMl { get; set; }
         public int Doors { get; set; }
         public GearBoxType GearboxType { get; set; }
-
-        public int AdvertisementId { get; set; }
-        public Advertisement Advertisement { get; set; }
     }
 }

@@ -40,6 +40,8 @@ namespace CarChangeApi
 
             app.UseHttpsRedirection();
 
+            app.UseCors("CorsAllowAll");
+
             app.UseRouting();
 
             app.UseAuthentication();

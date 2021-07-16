@@ -1,4 +1,5 @@
-﻿using CarChangeApi.Contracts.Requests;
+﻿using CarChangeApi.Commands;
+using CarChangeApi.Contracts.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,15 @@ namespace CarChangeApi.Controllers
         [Authorize]
         public async Task<IActionResult> CreateAdvertisement([FromBody] AdvertisementCreateRequest createRequest)
         {
+            var advertisement = await _mediator.Send(new AdvertisementCreateCommand(createRequest));
 
-            // return CreatedAtAction(nameof(CreateAdvertisement), new { id = 5 }, product);
-            return await Task.FromResult(Ok());
+
+            return CreatedAtAction(
+                nameof(CreateAdvertisement),
+                new { id = advertisement.Advertisement.AdvertisementId },
+                advertisement
+                );
+
         }
     }
 }

@@ -55,14 +55,16 @@ namespace CarChangeApi.Repositories.Impl
             return await query.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
-        public async Task InsertAsync(T entity)
+        public Task InsertAsync(T entity)
         {
-            await Db.AddAsync(entity);
+            Db.Add(entity);
+            return Task.CompletedTask;
         }
 
-        public async Task InsertRangeAsync(IEnumerable<T> entities)
+        public Task InsertRangeAsync(IEnumerable<T> entities)
         {
-            await Db.AddRangeAsync(entities);
+            Db.AddRange(entities);
+            return Task.CompletedTask;
         }
 
         public async Task DeleteAsync(long id)

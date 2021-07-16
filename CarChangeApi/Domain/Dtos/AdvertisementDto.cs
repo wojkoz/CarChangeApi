@@ -1,9 +1,8 @@
-using System;
-using CarChangeApi.Domain.Models;
+﻿using System;
 
-namespace CarChangeApi.Domain.Generated
+namespace CarChangeApi.Domain.Dtos
 {
-    public partial class AdvertisementDto
+    public class AdvertisementDto
     {
         public int AdvertisementId { get; set; }
         public string Title { get; set; }
@@ -13,6 +12,6 @@ namespace CarChangeApi.Domain.Generated
         public DateTime CreatedAt { get; set; }
         public DateTime Ends { get; set; }
         public string UserId { get; set; }
-        public Car Car { get; set; }
+        public CarDto Car { get; set; }
     }
 }

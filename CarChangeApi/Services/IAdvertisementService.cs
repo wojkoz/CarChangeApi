@@ -1,5 +1,5 @@
 ﻿using CarChangeApi.Contracts.Requests;
-using CarChangeApi.Domain.Generated;
+using CarChangeApi.Domain.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

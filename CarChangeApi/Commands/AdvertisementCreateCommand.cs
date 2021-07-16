@@ -35,19 +35,7 @@ namespace CarChangeApi.Commands
 
             var result = await _advertisementService.AddAdvertisementAsync(request.CreateRequest, request.UserId);
 
-            return new AdvertisementCreateResponse() { Advertisement = result, Succeded = true};
-
-            //if (result is null)
-            //{
-            //    IEnumerable<IdentityError> errors = new List<IdentityError>() {
-            //            new(){Code = "-1", Description = "User with that email already exists"}
-            //        };
-
-            //    return new UserRegisterResponse() { Succeded = false, Errors = errors };
-            //}
-
-            //return new UserRegisterResponse() { Succeded = result.Succeeded, Errors = result.Errors };
-
+            return new AdvertisementCreateResponse() { Advertisement = result, Succeded = true };
         }
 
     }

@@ -1,9 +1,9 @@
-﻿using CarChangeApi.Domain.Generated;
+﻿using CarChangeApi.Domain.Dtos;
 
 namespace CarChangeApi.Contracts.Requests
 {
     public class AdvertisementCreateRequest
     {
-        public AdvertisementDto Advertisement { get; set; }
+        public CreateAdvertisementDto Advertisement { get; set; }
     }
 }

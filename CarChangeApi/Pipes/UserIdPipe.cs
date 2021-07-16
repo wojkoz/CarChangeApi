@@ -19,12 +19,14 @@ namespace CarChangeApi.Pipes
 
         public Task<TOut> Handle(TIn request, CancellationToken cancellationToken, RequestHandlerDelegate<TOut> next)
         {
-            var userId = httpContext.User.Claims.
-                FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier))
-                .Value;
+            
 
             if(request is BaseRequest baseRequest)
             {
+                var userId = httpContext.User.Claims.
+                FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier))
+                .Value;
+
                 baseRequest.UserId = userId;
             }
 
