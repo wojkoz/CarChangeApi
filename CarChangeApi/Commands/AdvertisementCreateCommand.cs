@@ -1,5 +1,6 @@
 ﻿using CarChangeApi.Contracts.Requests;
 using CarChangeApi.Contracts.Responses;
+using CarChangeApi.Domain.Utils;
 using CarChangeApi.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -34,7 +35,12 @@ namespace CarChangeApi.Commands
 
             var result = await _advertisementService.AddAdvertisementAsync(request.CreateRequest, request.UserId);
 
-            return new AdvertisementCreateResponse() { Data = result, Succeded = true };
+            return new AdvertisementCreateResponse() 
+            { 
+                Data = result, 
+                Succeded = true, 
+                Errors = ErrorListGenerator.CreateEmpty() 
+            };
         }
 
     }

@@ -52,7 +52,7 @@ namespace CarChangeApi.Services.impl
                 return;
             }
 
-            throw new NotImplementedException();
+            throw new Exception($"Couldn't delete Advertisement with ID: {entityId} for userID: {userId}");
         }
 
         public async Task<IEnumerable<AdvertisementDto>> GetAdvertisementListAsync()

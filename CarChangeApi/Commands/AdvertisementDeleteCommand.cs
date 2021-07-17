@@ -50,7 +50,7 @@ namespace CarChangeApi.Commands
             return new AdvertisementDeleteResponse()
             {
                 Succeded = true,
-                Data = $"Deleted: {request.IdToDelete}",
+                Data = $"Deleted adverisement with ID: {request.IdToDelete}",
                 Errors = ErrorListGenerator.CreateEmpty()
             };
         }
