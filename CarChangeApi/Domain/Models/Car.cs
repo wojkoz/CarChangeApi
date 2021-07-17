@@ -4,7 +4,7 @@ namespace CarChangeApi.Domain.Models
 {
     public class Car
     {
-        public int CarId { get; set; }
+        public long CarId { get; set; }
         public CarType Type { get; set; }
         public string Mark { get; set; }
         public string Model { get; set; }
@@ -17,7 +17,7 @@ namespace CarChangeApi.Domain.Models
         public int Doors { get; set; }
         public GearBoxType GearboxType { get; set; }
 
-        public int AdvertisementId { get; set; }
+        public long AdvertisementId { get; set; }
         public Advertisement Advertisement { get; set; }
     }
 }

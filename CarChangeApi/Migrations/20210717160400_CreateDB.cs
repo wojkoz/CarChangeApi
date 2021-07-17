@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarChangeApi.Migrations
 {
-    public partial class CreateDb : Migration
+    public partial class CreateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,7 +71,7 @@ namespace CarChangeApi.Migrations
                 name: "Advertisements",
                 columns: table => new
                 {
-                    AdvertisementId = table.Column<int>(type: "int", nullable: false)
+                    AdvertisementId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false),
@@ -181,7 +181,7 @@ namespace CarChangeApi.Migrations
                 name: "Cars",
                 columns: table => new
                 {
-                    CarId = table.Column<int>(type: "int", nullable: false)
+                    CarId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<int>(type: "int", nullable: false),
                     Mark = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
@@ -194,7 +194,7 @@ namespace CarChangeApi.Migrations
                     MileageMl = table.Column<int>(type: "int", nullable: false),
                     Doors = table.Column<int>(type: "int", nullable: false),
                     GearboxType = table.Column<int>(type: "int", nullable: false),
-                    AdvertisementId = table.Column<int>(type: "int", nullable: false)
+                    AdvertisementId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {

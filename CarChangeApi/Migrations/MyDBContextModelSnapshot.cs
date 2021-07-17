@@ -21,9 +21,9 @@ namespace CarChangeApi.Migrations
 
             modelBuilder.Entity("CarChangeApi.Domain.Models.Advertisement", b =>
                 {
-                    b.Property<int>("AdvertisementId")
+                    b.Property<long>("AdvertisementId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedAt")
@@ -63,13 +63,13 @@ namespace CarChangeApi.Migrations
 
             modelBuilder.Entity("CarChangeApi.Domain.Models.Car", b =>
                 {
-                    b.Property<int>("CarId")
+                    b.Property<long>("CarId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AdvertisementId")
-                        .HasColumnType("int");
+                    b.Property<long>("AdvertisementId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Color")
                         .IsRequired()

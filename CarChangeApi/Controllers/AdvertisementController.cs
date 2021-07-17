@@ -27,9 +27,19 @@ namespace CarChangeApi.Controllers
 
             return CreatedAtAction(
                 nameof(CreateAdvertisement),
-                new { id = advertisement.Advertisement.AdvertisementId },
+                new { id = advertisement.Data.AdvertisementId },
                 advertisement
                 );
+
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteAdvertisement(long id)
+        {
+            var result = await _mediator.Send(new AdvertisementDeleteCommand(id));
+
+            return result.Succeded ? Ok(result) : Conflict(result);
 
         }
     }

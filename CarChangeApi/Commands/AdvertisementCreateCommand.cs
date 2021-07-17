@@ -1,5 +1,4 @@
-﻿
-using CarChangeApi.Contracts.Requests;
+﻿using CarChangeApi.Contracts.Requests;
 using CarChangeApi.Contracts.Responses;
 using CarChangeApi.Services;
 using MediatR;
@@ -31,11 +30,11 @@ namespace CarChangeApi.Commands
 
         public async Task<AdvertisementCreateResponse> Handle(AdvertisementCreateCommand request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("RegisterUserCommand handler");
+            _logger.LogInformation("AdvertisementCreateCommandHandler");
 
             var result = await _advertisementService.AddAdvertisementAsync(request.CreateRequest, request.UserId);
 
-            return new AdvertisementCreateResponse() { Advertisement = result, Succeded = true };
+            return new AdvertisementCreateResponse() { Data = result, Succeded = true };
         }
 
     }

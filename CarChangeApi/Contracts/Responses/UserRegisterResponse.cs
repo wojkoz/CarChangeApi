@@ -1,6 +1,6 @@
 ﻿namespace CarChangeApi.Contracts.Responses
 {
-    public class UserRegisterResponse : BaseResponse
+    public class UserRegisterResponse : BaseResponse<string>
     {
 
     }

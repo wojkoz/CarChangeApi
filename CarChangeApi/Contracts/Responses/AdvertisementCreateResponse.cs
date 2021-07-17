@@ -2,8 +2,7 @@
 
 namespace CarChangeApi.Contracts.Responses
 {
-    public class AdvertisementCreateResponse : BaseResponse
+    public class AdvertisementCreateResponse : BaseResponse<AdvertisementDto>
     {
-        public AdvertisementDto Advertisement { get; set; }
     }
 }

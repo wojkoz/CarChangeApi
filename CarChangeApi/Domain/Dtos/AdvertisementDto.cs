@@ -4,7 +4,7 @@ namespace CarChangeApi.Domain.Dtos
 {
     public class AdvertisementDto
     {
-        public int AdvertisementId { get; set; }
+        public long AdvertisementId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }

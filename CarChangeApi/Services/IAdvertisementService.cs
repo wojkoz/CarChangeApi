@@ -10,7 +10,7 @@ namespace CarChangeApi.Services
         Task<AdvertisementDto> AddAdvertisementAsync(AdvertisementCreateRequest createRequest, string userId);
         Task<IEnumerable<AdvertisementDto>> GetAdvertisementListByUserAsync(string userId);
         Task<IEnumerable<AdvertisementDto>> GetAdvertisementListAsync();
-        Task DeleteAdvertisementAsync(long todoId, string userId);
+        Task DeleteAdvertisementAsync(long entityId, string userId);
         Task<AdvertisementDto> UpdateAdvertisementAsync(AdvertisementDto dto, string userId);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CarChangeApi.Contracts.Requests;
 using CarChangeApi.Contracts.Responses;
+using CarChangeApi.Domain.Utils;
 using CarChangeApi.Services;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -38,10 +39,7 @@ namespace CarChangeApi.Commands
 
             if (result is null)
             {
-                //TODO: add helper class with errors
-                IEnumerable<IdentityError> errors = new List<IdentityError>() {
-                        new(){Code = "-1", Description = "User with that email already exists"}
-                    };
+                IEnumerable<IdentityError> errors = ErrorListGenerator.CreateError("User with that email already exists");
 
                 return new UserRegisterResponse() { Succeded = false, Errors = errors };
             }

@@ -41,10 +41,16 @@ namespace CarChangeApi.Services.impl
             return advertisement.Adapt<AdvertisementDto>();
         }
 
-        public Task DeleteAdvertisementAsync(long entityId, string userId)
+        public async Task DeleteAdvertisementAsync(long entityId, string userId)
         {
-            //await IsOwner(entityId, userId) ? _advertisementRepository.DeleteAsync(todoId) : 
+            var isOwner = await IsOwner(entityId, userId);
 
+            if (isOwner)
+            {
+                await _advertisementRepository.DeleteAsync(entityId);
+                await _advertisementRepository.Save();
+                return;
+            }
 
             throw new NotImplementedException();
         }
@@ -69,7 +75,9 @@ namespace CarChangeApi.Services.impl
         private async Task<bool> IsOwner(long advertisementId, string userId)
         {
             var advertisement = await _advertisementRepository.GetAsync(x => x.AdvertisementId == advertisementId);
-            return advertisement.UserId == userId;
+            bool result = advertisement is not null && advertisement.UserId == userId;
+
+            return result;
         }
     }
 }
