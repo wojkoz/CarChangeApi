@@ -42,7 +42,7 @@ namespace CarChangeApi.Repositories.Impl
             return await query.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetAsync(Expression<Func<T, bool>> expression, IEnumerable<string> includes = null)
+        public Task<T> GetAsync(Expression<Func<T, bool>> expression, IEnumerable<string> includes = null)
         {
             IQueryable<T> query = Db;
 
@@ -52,7 +52,7 @@ namespace CarChangeApi.Repositories.Impl
                     current.Include(includeProperty));
             }
 
-            return await query.AsNoTracking().FirstOrDefaultAsync(expression);
+            return query.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
         public Task InsertAsync(T entity)

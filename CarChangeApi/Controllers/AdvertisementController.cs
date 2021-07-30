@@ -1,5 +1,6 @@
 ﻿using CarChangeApi.Commands;
 using CarChangeApi.Contracts.Requests;
+using CarChangeApi.Domain.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,16 @@ namespace CarChangeApi.Controllers
         public async Task<IActionResult> DeleteAdvertisement(long id)
         {
             var result = await _mediator.Send(new AdvertisementDeleteCommand(id));
+
+            return result.Succeded ? Ok(result) : Conflict(result);
+
+        }
+
+        [HttpPut]
+        [Authorize]
+        public async Task<IActionResult> UpdateAdvertisement([FromBody] AdvertisementDto dto)
+        {
+            var result = await _mediator.Send(new AdvertisementUpdateCommand(dto));
 
             return result.Succeded ? Ok(result) : Conflict(result);
 

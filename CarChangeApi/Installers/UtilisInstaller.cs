@@ -1,4 +1,6 @@
-﻿using CarChangeApi.Pipes;
+﻿using CarChangeApi.Domain.Generated;
+using CarChangeApi.Domain.Mapster.Mappers;
+using CarChangeApi.Pipes;
 using CarChangeApi.Repositories;
 using CarChangeApi.Repositories.Impl;
 using CarChangeApi.Services;
@@ -19,6 +21,7 @@ namespace CarChangeApi.Installers
             services.AddTransient<ICarRepository, CarRepository>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IAdvertisementService, AdvertisementService>();
+            services.AddTransient<IAdvertisementMapper, AdvertisementMapper>();
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(UserIdPipe<,>));
             services.AddMediatR(typeof(Startup));
